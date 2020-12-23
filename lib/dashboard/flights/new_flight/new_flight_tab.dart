@@ -154,9 +154,6 @@ class _NewFlightTabState extends State<NewFlightTab> {
                         child: Alert(
                             type: AlertType.error,
                             text: "There was an error creating new flight!")),
-                  SizedBox(
-                    height: 64,
-                  ),
                 ],
               ),
             ));
