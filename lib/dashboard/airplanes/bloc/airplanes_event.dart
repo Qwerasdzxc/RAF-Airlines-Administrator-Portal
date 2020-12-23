@@ -10,11 +10,11 @@ abstract class AirplanesEvent extends Equatable {
 
 class GetAllAirplanesEvent extends AirplanesEvent {}
 
-class CreateAirplaneEvent extends AirplanesEvent {
+class AddAirplaneEvent extends AirplanesEvent {
 
   final Airplane airplane;
 
-  CreateAirplaneEvent({@required this.airplane});
+  AddAirplaneEvent({@required this.airplane});
 
   @override
   List<Object> get props => [airplane];

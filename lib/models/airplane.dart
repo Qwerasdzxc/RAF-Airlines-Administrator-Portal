@@ -7,7 +7,7 @@ class Airplane extends Equatable {
 
   final String name;
 
-  Airplane({@required this.id, @required this.capacity, @required this.name});
+  Airplane({this.id, @required this.capacity, @required this.name});
 
   factory Airplane.fromJson(Map json) =>
       Airplane(id: json["airplaneId"], capacity: json["capacity"], name: json["name"]);

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/dashboard_page.dart';
 import 'package:raf_airlines_admin/login/bloc/login_bloc.dart';
+import 'package:raf_airlines_admin/ui/alert.dart';
+import 'package:raf_airlines_admin/ui/fade_in_widget.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -42,14 +44,14 @@ class _LoginPageState extends State<LoginPage> {
                       children: <Widget>[
                         Container(
                             width: MediaQuery.of(context).size.width / 6,
-                            child: Image.asset("assets/raf_logo.jpg")),
+                            child: Image.asset("assets/airplane.gif", height: 300,)),
                         SizedBox(
                           width: 24,
                         ),
                         Text(
-                          "RAF Airlines",
+                          "RAF\nAirlines",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontStyle: FontStyle.italic,
                               fontSize: 28, color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -102,12 +104,6 @@ class _LoginPageState extends State<LoginPage> {
                                   SizedBox(
                                     height: 8,
                                   ),
-                                  Text(
-                                    "Forgot your password?",
-                                    style: TextStyle(
-                                        decoration: TextDecoration.underline,
-                                        color: Theme.of(context).primaryColorDark),
-                                  ),
                                 ],
                               ),
                             ),
@@ -116,31 +112,38 @@ class _LoginPageState extends State<LoginPage> {
                               children: <Widget>[
                                 Container(
                                   color: Theme.of(context).primaryColor,
-                                  child: FlatButton(
+                                  child: MaterialButton(
+                                    padding: const EdgeInsets.all(18),
                                     onPressed: () => BlocProvider.of<LoginBloc>(context).add(
                                         LoginCredentialsProvided(
                                             username: _usernameController.text,
                                             password: _passwordController.text)),
                                     child: Text(
                                       "Login",
-                                      style: TextStyle(color: Colors.white),
+                                      style: TextStyle(fontSize: 18, color: Colors.white),
                                     ),
-                                    color: Colors.black12,
                                   ),
                                 ),
                               ],
                             ),
+                            SizedBox(
+                              height: 12,
+                            ),
                             if (state is LoginError)
-                              Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: Text(
-                                    "Login credentials invalid!",
-                                    style:
-                                        TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
-                                  ),
-                                ),
-                              )
+                              FadeInWidget(
+                                  child: Alert(
+                                      type: AlertType.error,
+                                      text: "Login credentials invalid!")),
+                              // Center(
+                              //   child: Padding(
+                              //     padding: const EdgeInsets.all(8),
+                              //     child: Text(
+                              //       "Login credentials invalid!",
+                              //       style:
+                              //           TextStyle(color: Colors.red, fontWeight: FontWeight.w600),
+                              //     ),
+                              //   ),
+                              // )
                           ],
                         ),
                       ),
@@ -153,13 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: MainAxisAlignment.center,
                     buttonPadding: const EdgeInsets.symmetric(horizontal: 8),
                     children: <Widget>[
-                      Text("About", style: TextStyle(color: Colors.white)),
-                      Text("·", style: TextStyle(color: Colors.white)),
-                      Text("Home", style: TextStyle(color: Colors.white)),
-                      Text("·", style: TextStyle(color: Colors.white)),
-                      Text("Blog", style: TextStyle(color: Colors.white)),
-                      Text("·", style: TextStyle(color: Colors.white)),
-                      Text("Support", style: TextStyle(color: Colors.white)),
+                      Text("All content is property of RAF Airlines", style: TextStyle(color: Colors.white)),
                     ],
                   ),
                 )

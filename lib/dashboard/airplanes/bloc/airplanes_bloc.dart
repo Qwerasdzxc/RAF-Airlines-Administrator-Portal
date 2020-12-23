@@ -27,15 +27,13 @@ class AirplanesBloc extends Bloc<AirplanesEvent, AirplanesState> {
       } catch (e) {
         yield AirplanesError();
       }
-    } else if (event is CreateAirplaneEvent) {
+    } else if (event is AddAirplaneEvent) {
       final currState = state;
 
       yield AirplanesLoading();
 
       try {
-        final newPlane = await service.createAirplane(event.airplane);
-
-        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes..add(newPlane));
+        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes..add(event.airplane));
       } catch (e) {
         yield AirplanesError();
       }

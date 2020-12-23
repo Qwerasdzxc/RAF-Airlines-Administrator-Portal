@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/airplanes_tab.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/bloc/airplanes_bloc.dart';
-import 'package:raf_airlines_admin/dashboard/airplanes/new_airplane_tab.dart';
+import 'package:raf_airlines_admin/dashboard/airplanes/new_airplane/new_airplane_tab.dart';
 import 'package:raf_airlines_admin/dashboard/bloc/tab_view.dart';
 import 'package:raf_airlines_admin/dashboard/flights/bloc/flights_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/flights/flights_tab.dart';

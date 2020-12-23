@@ -2,87 +2,59 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/bloc/airplanes_bloc.dart';
 import 'package:raf_airlines_admin/models/airplane.dart';
+import 'package:raf_airlines_admin/ui/white_panel.dart';
 
 class AirplanesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AirplanesBloc, AirplanesState>(builder: (context, state) {
       if (state is AirplanesLoaded && state.airplanes.isNotEmpty)
-        return Padding(
-          padding: const EdgeInsets.all(24),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "All airplanes",
-                        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        return WhitePanel(
+            title: "All airplanes",
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: DataTable(
+                showBottomBorder: true,
+                columns: [
+                  DataColumn(
+                      label: Text(
+                    "Id",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                  DataColumn(
+                      label: Text(
+                    "Name",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                  DataColumn(
+                      label: Text(
+                        "Capacity",
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Divider(),
-                  Expanded(
-                      child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: DataTable(
-                      showBottomBorder: true,
-                      columns: [
-                        DataColumn(
-                            label: Text(
-                          "Id",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                        DataColumn(
-                            label: Text(
-                          "Name",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        )),
-                        DataColumn(
-                            label: Text(
-                              "Capacity",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            numeric: true),
-                        DataColumn(
-                            label: Text(
-                              "Delete",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            numeric: true)
-                      ],
-                      rows: state.airplanes
-                          .map((plane) => DataRow(cells: [
-                                DataCell(Text(plane.id.toString())),
-                                DataCell(Text(plane.name)),
-                                DataCell(Text(plane.capacity.toString())),
-                                DataCell(IconButton(
-                                  icon: Icon(
-                                    Icons.delete_forever,
-                                    color: Colors.red,
-                                  ),
-                                  onPressed: () => _showConfirmationDialog(context, plane),
-                                )),
-                              ]))
-                          .toList(),
-                    ),
-                  ))
+                      numeric: true),
+                  DataColumn(
+                      label: Text(
+                        "Delete",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      numeric: true)
                 ],
+                rows: state.airplanes
+                    .map((plane) => DataRow(cells: [
+                          DataCell(Text(plane.id.toString())),
+                          DataCell(Text(plane.name)),
+                          DataCell(Text(plane.capacity.toString())),
+                          DataCell(IconButton(
+                            icon: Icon(
+                              Icons.delete_forever,
+                              color: Colors.red,
+                            ),
+                            onPressed: () => _showConfirmationDialog(context, plane),
+                          )),
+                        ]))
+                    .toList(),
               ),
-            ),
-          ),
-        );
+            ));
       else if (state is AirplanesLoaded && state.airplanes.isEmpty)
         return Center(
           child: Column(
