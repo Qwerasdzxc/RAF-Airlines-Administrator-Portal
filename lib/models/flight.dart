@@ -33,6 +33,23 @@ class Flight extends Equatable {
       price: json["price"],
       canceled: json["canceled"]);
 
+  Flight copyWith(
+          {int id,
+          int distance,
+          Airplane airplane,
+          String startDestination,
+          String endDestination,
+          double price,
+          bool canceled}) =>
+      Flight(
+          id: id ?? this.id,
+          distance: distance ?? this.distance,
+          airplane: airplane ?? this.airplane,
+          startDestination: startDestination ?? this.startDestination,
+          endDestination: endDestination ?? this.endDestination,
+          price: price ?? this.price,
+          canceled: canceled ?? this.canceled);
+
   @override
   List<Object> get props => [id];
 }

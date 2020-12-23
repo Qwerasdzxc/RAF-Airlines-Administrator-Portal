@@ -4,10 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/airplanes_tab.dart';
+import 'package:raf_airlines_admin/dashboard/airplanes/bloc/airplanes_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/new_airplane_tab.dart';
 import 'package:raf_airlines_admin/dashboard/bloc/tab_view.dart';
+import 'package:raf_airlines_admin/dashboard/flights/bloc/flights_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/flights/flights_tab.dart';
 import 'package:raf_airlines_admin/dashboard/flights/new_flight_tab.dart';
+import 'package:raf_airlines_admin/services/airplane/airplane_service.dart';
+import 'package:raf_airlines_admin/services/flight/flight_service.dart';
+import 'package:raf_airlines_admin/services/service_provider.dart';
+import 'package:raf_airlines_admin/dashboard/views/tabbed_view.dart';
 
 part 'dashboard_view_event.dart';
 part 'dashboard_view_state.dart';

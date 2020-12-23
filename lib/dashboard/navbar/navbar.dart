@@ -34,7 +34,7 @@ class _NavbarState extends State<Navbar> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: <Widget>[
-                              FlutterLogo(textColor: Theme.of(context).primaryColor,),
+                              Icon(state.icon, size: 36, color: Theme.of(context).primaryColor,),
                               SizedBox(
                                 width: 12,
                               ),
