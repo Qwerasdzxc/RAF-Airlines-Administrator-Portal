@@ -71,7 +71,7 @@ class FlightsPageViewState extends TabbedViewState {
 
   @override
   FlightsBloc Function(BuildContext context) get bloc =>
-      (context) => FlightsBloc(service: getService<FlightService>());
+      (context) => FlightsBloc(service: getService<FlightService>())..add(GetAllFlightsEvent());
 
   FlightsPageViewState({@required this.views});
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/airplanes/bloc/airplanes_bloc.dart';
-import 'package:raf_airlines_admin/models/airplane.dart';
+import 'package:raf_airlines_admin/ui/dialogs.dart';
 import 'package:raf_airlines_admin/ui/white_panel.dart';
 
 class AirplanesTab extends StatelessWidget {
@@ -49,7 +49,13 @@ class AirplanesTab extends StatelessWidget {
                               Icons.delete_forever,
                               color: Colors.red,
                             ),
-                            onPressed: () => _showConfirmationDialog(context, plane),
+                            onPressed: () => Dialogs.showConfirmationDialog(
+                                context: context,
+                                content: "Are you sure you wish to delete airplane: " +
+                                    plane.name +
+                                    "?\n\nThis action cannot be revoked!",
+                                callback: () => BlocProvider.of<AirplanesBloc>(context)
+                                    .add(DeleteAirplaneEvent(airplane: plane))),
                           )),
                         ]))
                     .toList(),
@@ -113,47 +119,5 @@ class AirplanesTab extends StatelessWidget {
           ),
         );
     });
-  }
-
-  void _showConfirmationDialog(BuildContext context, Airplane airplane) {
-    Widget cancelButton = FlatButton(
-      child: Text("Cancel"),
-      onPressed: () => Navigator.pop(context),
-    );
-
-    Widget continueButton = FlatButton(
-      child: Text("Delete"),
-      onPressed: () {
-        BlocProvider.of<AirplanesBloc>(context).add(DeleteAirplaneEvent(airplane: airplane));
-        Navigator.pop(context);
-      },
-    );
-
-    AlertDialog alert = AlertDialog(
-      title: Row(
-        children: [
-          Icon(
-            Icons.warning,
-            color: Colors.red,
-          ),
-          SizedBox(
-            width: 12,
-          ),
-          Text(
-            "Confirmation",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-      content: Text("Are you sure you wish to delete airplane: " +
-          airplane.name +
-          "?\n\nThis action cannot be revoked!"),
-      actions: [
-        cancelButton,
-        continueButton,
-      ],
-    );
-
-    showDialog(context: context, builder: (_) => alert);
   }
 }

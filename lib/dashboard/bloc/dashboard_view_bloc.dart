@@ -9,7 +9,7 @@ import 'package:raf_airlines_admin/dashboard/airplanes/new_airplane/new_airplane
 import 'package:raf_airlines_admin/dashboard/bloc/tab_view.dart';
 import 'package:raf_airlines_admin/dashboard/flights/bloc/flights_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/flights/flights_tab.dart';
-import 'package:raf_airlines_admin/dashboard/flights/new_flight_tab.dart';
+import 'package:raf_airlines_admin/dashboard/flights/new_flight/new_flight_tab.dart';
 import 'package:raf_airlines_admin/services/airplane/airplane_service.dart';
 import 'package:raf_airlines_admin/services/flight/flight_service.dart';
 import 'package:raf_airlines_admin/services/service_provider.dart';

@@ -16,13 +16,13 @@ class Flight extends Equatable {
   final bool canceled;
 
   Flight(
-      {@required this.id,
+      {this.id,
       @required this.distance,
       @required this.airplane,
       @required this.startDestination,
       @required this.endDestination,
       @required this.price,
-      @required this.canceled});
+      this.canceled = false});
 
   factory Flight.fromJson(Map json) => Flight(
       id: json["flightId"],

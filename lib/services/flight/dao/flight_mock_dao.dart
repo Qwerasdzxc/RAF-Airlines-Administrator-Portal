@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:math';
+
 import 'package:raf_airlines_admin/models/airplane.dart';
 import 'package:raf_airlines_admin/models/flight.dart';
 import 'package:raf_airlines_admin/services/flight/dao/flight_dao.dart';
@@ -23,8 +26,27 @@ class FlightMockDAO implements FlightDAO {
   ];
 
   @override
-  Future<List<Flight>> getAllFlights() {
-    // TODO: implement getAllFlights
-    throw UnimplementedError();
+  Future<List<Flight>> getAllFlights() async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    return List.from(flights);
   }
+
+  @override
+  Future<Flight> createFlight(Flight flight) async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    flights.add(flight.copyWith(id: Random().nextInt(1000)));
+
+    return flights.last;
+  }
+
+  @override
+  FutureOr<void> deleteFlight(Flight flight) async {
+    await Future.delayed(Duration(milliseconds: 500));
+
+    flights.remove(flight);
+  }
+
+
 }

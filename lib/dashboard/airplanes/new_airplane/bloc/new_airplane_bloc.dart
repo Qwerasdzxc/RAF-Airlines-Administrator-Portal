@@ -33,7 +33,7 @@ class NewAirplaneBloc extends Bloc<NewAirplaneEvent, NewAirplaneState> {
 
         yield NewAirplaneCreated(airplane: airplane);
 
-        await Future.delayed(Duration(seconds: 4));
+        await Future.delayed(Duration(seconds: 2));
         yield NewAirplaneInitial();
       } catch (_) {
         yield NewAirplaneError();
