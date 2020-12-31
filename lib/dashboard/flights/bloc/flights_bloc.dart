@@ -45,7 +45,12 @@ class FlightsBloc extends Bloc<FlightsEvent, FlightsState> {
       try {
         await service.deleteFlight(event.flight);
 
-        yield FlightsLoaded(flights: (currState as FlightsLoaded).flights..remove(event.flight));
+        List<Flight> flights = (currState as FlightsLoaded).flights;
+
+        Flight flight = flights.singleWhere((flight) => flight.id == event.flight.id).copyWith(canceled: true);
+        flights.removeWhere((flight) => flight.id == event.flight.id);
+
+        yield FlightsLoaded(flights: (currState as FlightsLoaded).flights..add(flight));
       } catch (e) {
         yield FlightsError();
       }
