@@ -21,7 +21,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> widthAnimation;
 
-  String _selectedItem = "Dashboard";
+  String _selectedItem = "";
 
   @override
   void initState() {
@@ -102,13 +102,6 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
                         lighten: true),
                     SizedBox(
                       height: 12,
-                    ),
-                    _sidebarItem(CategoryModel(title: "Home")),
-                    _sidebarItem(
-                      NavigationModel(
-                          option: HomeView(),
-                          title: "Dashboard",
-                          icon: Icons.insert_chart),
                     ),
                     _sidebarItem(
                       CategoryModel(title: "Administration"),

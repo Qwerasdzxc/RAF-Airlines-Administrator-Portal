@@ -61,7 +61,7 @@ class FlightsTab extends StatelessWidget {
                   ),
                   DataColumn(
                       label: Text(
-                        "Delete",
+                        "Abort",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       numeric: true)
@@ -80,12 +80,12 @@ class FlightsTab extends StatelessWidget {
                           )),
                           DataCell(IconButton(
                             icon: Icon(
-                              Icons.delete_forever,
+                              Icons.airplanemode_inactive,
                               color: Colors.red,
                             ),
                             onPressed: () => Dialogs.showConfirmationDialog(
                                 context: context,
-                                content: "Are you sure you wish to delete flight with Id: " +
+                                content: "Are you sure you wish to abort flight with Id: " +
                                     flight.id.toString() +
                                     "?\n\nThis action cannot be revoked!",
                                 callback: () => BlocProvider.of<FlightsBloc>(context)

@@ -35,7 +35,7 @@ class HomeViewState extends SingleViewState {
   Cubit<Object> Function(BuildContext context) get bloc => null;
 
   @override
-  Widget get view => Center(child: Text("Home view"));
+  Widget get view => Container();
 }
 
 class AirplanesPageViewState extends TabbedViewState {
