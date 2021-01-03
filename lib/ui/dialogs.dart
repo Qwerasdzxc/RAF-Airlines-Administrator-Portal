@@ -9,7 +9,7 @@ class Dialogs {
     );
 
     Widget continueButton = FlatButton(
-      child: Text("Delete"),
+      child: Text("Continue"),
       onPressed: () {
         callback();
         Navigator.pop(context);

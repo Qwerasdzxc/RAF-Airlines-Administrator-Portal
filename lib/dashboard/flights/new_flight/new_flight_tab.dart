@@ -78,6 +78,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     leading: Icon(Icons.flight_takeoff),
                     title: TextFormField(
                       controller: _startDestController,
+                      maxLength: 3,
                       validator: (text) {
                         return text.trim().length == 3
                             ? null
@@ -90,6 +91,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     leading: Icon(Icons.flight_land),
                     title: TextFormField(
                       controller: _endDestController,
+                      maxLength: 3,
                       validator: (text) {
                         return text.trim().length == 3
                             ? null
