@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/bloc/dashboard_view_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/navbar/navbar.dart';
 
-class TabbedView<T extends Cubit<Object>> extends StatefulWidget {
+class TabbedView<T extends Bloc> extends StatefulWidget {
 
   final TabbedViewState state;
 
@@ -13,7 +13,7 @@ class TabbedView<T extends Cubit<Object>> extends StatefulWidget {
   _TabbedViewState<T> createState() => _TabbedViewState<T>();
 }
 
-class _TabbedViewState<T extends Cubit<Object>> extends State<TabbedView<T>> with TickerProviderStateMixin {
+class _TabbedViewState<T extends Bloc> extends State<TabbedView<T>> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     final controller = TabController(length: widget.state.views.length, vsync: this);

@@ -1,11 +1,11 @@
 part of 'dashboard_view_bloc.dart';
 
-abstract class DashboardViewState<T> extends Equatable {
+abstract class DashboardViewState extends Equatable {
   String get title;
 
   IconData get icon;
 
-  Cubit<Object> Function(BuildContext context) get bloc;
+  Bloc Function(BuildContext context) get bloc;
 
   Widget get view;
 
@@ -32,7 +32,7 @@ class HomeViewState extends SingleViewState {
   String get subtitle => "Home view Lorem Ipsum text for a subtitle space";
 
   @override
-  Cubit<Object> Function(BuildContext context) get bloc => null;
+  Bloc Function(BuildContext context) get bloc => null;
 
   @override
   Widget get view => Container();
@@ -87,7 +87,7 @@ class ErrorViewState extends SingleViewState {
   IconData get icon => Icons.error;
 
   @override
-  Cubit<Object> Function(BuildContext context) get bloc => null;
+  Bloc Function(BuildContext context) get bloc => null;
 
   @override
   Widget get view => Center(
