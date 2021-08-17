@@ -5,7 +5,7 @@ abstract class DashboardViewState extends Equatable {
 
   IconData get icon;
 
-  Bloc Function(BuildContext context) get bloc;
+  Bloc Function(BuildContext context)? get bloc;
 
   Widget get view;
 
@@ -32,7 +32,7 @@ class HomeViewState extends SingleViewState {
   String get subtitle => "Home view Lorem Ipsum text for a subtitle space";
 
   @override
-  Bloc Function(BuildContext context) get bloc => null;
+  Bloc Function(BuildContext context)? get bloc => null;
 
   @override
   Widget get view => Container();
@@ -54,7 +54,7 @@ class AirplanesPageViewState extends TabbedViewState {
   AirplanesBloc Function(BuildContext context) get bloc => (context) =>
       AirplanesBloc(service: getService<AirplaneService>())..add(GetAllAirplanesEvent());
 
-  AirplanesPageViewState({@required this.views});
+  AirplanesPageViewState({required this.views});
 }
 
 class FlightsPageViewState extends TabbedViewState {
@@ -73,7 +73,7 @@ class FlightsPageViewState extends TabbedViewState {
   FlightsBloc Function(BuildContext context) get bloc =>
       (context) => FlightsBloc(service: getService<FlightService>())..add(GetAllFlightsEvent());
 
-  FlightsPageViewState({@required this.views});
+  FlightsPageViewState({required this.views});
 }
 
 class ErrorViewState extends SingleViewState {
@@ -87,7 +87,7 @@ class ErrorViewState extends SingleViewState {
   IconData get icon => Icons.error;
 
   @override
-  Bloc Function(BuildContext context) get bloc => null;
+  Bloc Function(BuildContext context)? get bloc => null;
 
   @override
   Widget get view => Center(

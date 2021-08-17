@@ -7,7 +7,7 @@ class UserService {
 
   final UserDAO dao;
 
-  UserService({@required this.dao});
+  UserService({required this.dao});
 
   FutureOr<void> login(String username, String password) async => dao.login(username, password);
 }

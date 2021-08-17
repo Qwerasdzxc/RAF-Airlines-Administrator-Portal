@@ -8,9 +8,9 @@ import 'package:raf_airlines_admin/services/airplane/dao/airplane_dao.dart';
 class AirplaneRestDAO implements AirplaneDAO {
 
   @override
-  Future<List<Airplane>> getAllAirplanes() async {
+  Future<List<Airplane>?> getAllAirplanes() async {
     try {
-      List<Airplane> airplanes = await RestClient().getAllAirplanes();
+      List<Airplane>? airplanes = await RestClient().getAllAirplanes();
       return airplanes;
     } on NetworkException catch (e) {
       throw e;

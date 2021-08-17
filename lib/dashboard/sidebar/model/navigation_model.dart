@@ -16,9 +16,9 @@ class NavigationModel extends SidebarItem {
   DashboardViewEvent option;
   IconData icon;
 
-  NavigationModel({@required this.option, @required String title, @required this.icon}) : super(title);
+  NavigationModel({required this.option, required String title, required this.icon}) : super(title);
 }
 
 class CategoryModel extends SidebarItem {
-  CategoryModel({@required String title}) : super(title);
+  CategoryModel({required String title}) : super(title);
 }

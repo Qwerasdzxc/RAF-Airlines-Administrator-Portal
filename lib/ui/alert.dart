@@ -6,7 +6,7 @@ class Alert extends StatelessWidget {
   final AlertType type;
   final String text;
 
-  const Alert({Key key, @required this.type, @required this.text}) : super(key: key);
+  const Alert({Key? key, required this.type, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class Alert extends StatelessWidget {
     );
   }
 
-  Color _bgColorForType() {
+  Color? _bgColorForType() {
     switch (type) {
       case AlertType.error:
         return Colors.redAccent[100];
@@ -42,7 +42,7 @@ class Alert extends StatelessWidget {
     return Colors.white;
   }
 
-  Color _textColorForType() {
+  Color? _textColorForType() {
     switch (type) {
       case AlertType.error:
         return Colors.red[800];

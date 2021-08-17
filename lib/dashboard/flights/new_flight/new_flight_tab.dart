@@ -23,9 +23,9 @@ class _NewFlightTabState extends State<NewFlightTab> {
 
   final _formKey = GlobalKey<FormState>();
 
-  Airplane _selectedAirplane;
+  Airplane? _selectedAirplane;
 
-  void _onAirplaneSelected(Airplane airplane) {
+  void _onAirplaneSelected(Airplane? airplane) {
     setState(() {
       _selectedAirplane = airplane;
     });
@@ -66,9 +66,9 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     title: DropdownButton<Airplane>(
                       isExpanded: true,
                       value: _selectedAirplane,
-                      items: state.airplanes
+                      items: state.airplanes!
                           .map((plane) =>
-                              DropdownMenuItem<Airplane>(value: plane, child: Text(plane.name)))
+                              DropdownMenuItem<Airplane>(value: plane, child: Text(plane.name!)))
                           .toList(),
                       onChanged: (plane) => _onAirplaneSelected(plane),
                     ),
@@ -80,7 +80,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                       controller: _startDestController,
                       maxLength: 3,
                       validator: (text) {
-                        return text.trim().length == 3
+                        return text!.trim().length == 3
                             ? null
                             : "Airport must contain exactly 3 letters";
                       },
@@ -93,7 +93,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                       controller: _endDestController,
                       maxLength: 3,
                       validator: (text) {
-                        return text.trim().length == 3
+                        return text!.trim().length == 3
                             ? null
                             : "Airport must contain exactly 3 letters";
                       },
@@ -105,7 +105,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     title: TextFormField(
                       controller: _distanceController,
                       validator: (text) {
-                        return int.tryParse(text) != null && int.parse(text) > 0
+                        return int.tryParse(text!) != null && int.parse(text) > 0
                             ? null
                             : "Distance must be a positive whole number";
                       },
@@ -117,7 +117,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     title: TextFormField(
                       controller: _priceController,
                       validator: (text) {
-                        return double.tryParse(text) != null && double.parse(text) > 0
+                        return double.tryParse(text!) != null && double.parse(text) > 0
                             ? null
                             : "Price must be a positive number";
                       },
@@ -135,7 +135,7 @@ class _NewFlightTabState extends State<NewFlightTab> {
                     ),
                     color: Theme.of(context).primaryColor,
                     onPressed: () {
-                      if (_formKey.currentState.validate())
+                      if (_formKey.currentState!.validate())
                         BlocProvider.of<NewFlightBloc>(context).add(NewFlightProvided(
                             airplane: _selectedAirplane,
                             startDestination: _startDestController.text,

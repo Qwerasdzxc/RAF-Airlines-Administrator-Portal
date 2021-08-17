@@ -5,21 +5,21 @@ import 'package:raf_airlines_admin/dashboard/sidebar/sidebar_theme.dart';
 
 class SidebarListItem extends StatefulWidget {
   final String title;
-  final String subtitle;
+  final String? subtitle;
 
   final bool isSelected;
   final bool lighten;
   final bool logo;
   final bool secondary;
 
-  final IconData icon;
-  final Widget widget;
-  final AnimationController animationController;
-  final Function onTap;
+  final IconData? icon;
+  final Widget? widget;
+  final AnimationController? animationController;
+  final Function? onTap;
 
   SidebarListItem(
-      {@required this.title,
-      @required this.animationController,
+      {required this.title,
+      required this.animationController,
       this.icon,
       this.subtitle,
       this.widget,
@@ -34,19 +34,19 @@ class SidebarListItem extends StatefulWidget {
 }
 
 class _SidebarListItemState extends State<SidebarListItem> {
-  Animation<double> widthAnimation, sizedBoxAnimation;
+  late Animation<double> widthAnimation, sizedBoxAnimation;
 
   @override
   void initState() {
     super.initState();
-    widthAnimation = Tween<double>(begin: 200, end: 70).animate(widget.animationController);
-    sizedBoxAnimation = Tween<double>(begin: 10, end: 0).animate(widget.animationController);
+    widthAnimation = Tween<double>(begin: 200, end: 70).animate(widget.animationController!);
+    sizedBoxAnimation = Tween<double>(begin: 10, end: 0).animate(widget.animationController!);
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onTap,
+      onTap: widget.onTap as void Function()?,
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(16.0)),
@@ -84,7 +84,7 @@ class _SidebarListItemState extends State<SidebarListItem> {
                                   ? listTitleSecondaryTextStyle
                                   : listTitleDefaultTextStyle),
                       widget.subtitle != null
-                          ? AutoSizeText(widget.subtitle,
+                          ? AutoSizeText(widget.subtitle!,
                               textAlign: TextAlign.start,
                               style: widget.isSelected
                                   ? listSubtitleSelectedTextStyle

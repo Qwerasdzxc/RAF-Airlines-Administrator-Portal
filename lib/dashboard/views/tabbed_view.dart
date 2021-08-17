@@ -7,7 +7,7 @@ class TabbedView<T extends Bloc> extends StatefulWidget {
 
   final TabbedViewState state;
 
-  const TabbedView({Key key, @required this.state}) : super(key: key);
+  const TabbedView({Key? key, required this.state}) : super(key: key);
 
   @override
   _TabbedViewState<T> createState() => _TabbedViewState<T>();
@@ -26,10 +26,10 @@ class _TabbedViewState<T extends Bloc> extends State<TabbedView<T>> with TickerP
         ),
         Expanded(
           child: AnimatedSwitcher(
-            layoutBuilder: (currChild, prevChildren) => currChild,
+            layoutBuilder: (currChild, prevChildren) => currChild!,
             duration: Duration(milliseconds: 500),
             child: BlocProvider<T>(
-              create: widget.state.bloc,
+              create: widget.state.bloc as T Function(BuildContext),
               child: TabBarView(
                   key: ValueKey<int>(widget.state.hashCode),
                   controller: controller,

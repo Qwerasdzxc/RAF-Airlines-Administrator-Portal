@@ -8,7 +8,7 @@ class FadeInWidget extends StatelessWidget {
   final Widget child;
   final bool yAxis;
 
-  FadeInWidget({@required this.child, this.delay = 0, this.yAxis = false});
+  FadeInWidget({required this.child, this.delay = 0, this.yAxis = false});
 
   @override
   Widget build(BuildContext context) {

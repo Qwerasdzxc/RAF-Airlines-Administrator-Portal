@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/bloc/dashboard_view_bloc.dart';
 import 'package:raf_airlines_admin/dashboard/navbar/navbar.dart';
 
-class SinglePageView<T extends Cubit<Object>> extends StatelessWidget {
-  final SingleViewState state;
+class SinglePageView<T extends Bloc> extends StatelessWidget {
+  final SingleViewState? state;
 
-  const SinglePageView({Key key, this.state}) : super(key: key);
+  const SinglePageView({Key? key, this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,11 @@ class SinglePageView<T extends Cubit<Object>> extends StatelessWidget {
         ),
         Expanded(
           child: AnimatedSwitcher(
-            layoutBuilder: (currChild, prevChildren) => currChild,
+            layoutBuilder: (currChild, prevChildren) => currChild!,
             duration: Duration(milliseconds: 500),
             child: BlocProvider<T>(
-                create: state.bloc,
-                child: Container(key: ValueKey<int>(state.hashCode), child: state.view)),
+                create: state!.bloc as T Function(BuildContext),
+                child: Container(key: ValueKey<int>(state.hashCode), child: state!.view)),
           ),
         ),
       ],

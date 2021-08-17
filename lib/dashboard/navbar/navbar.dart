@@ -6,9 +6,9 @@ import 'package:raf_airlines_admin/dashboard/bloc/dashboard_view_bloc.dart';
 
 class Navbar extends StatefulWidget {
 
-  final TabController controller;
+  final TabController? controller;
 
-  const Navbar({Key key, this.controller}) : super(key: key);
+  const Navbar({Key? key, this.controller}) : super(key: key);
 
   @override
   _NavbarState createState() => _NavbarState();

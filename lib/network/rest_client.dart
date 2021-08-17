@@ -7,9 +7,9 @@ import 'package:raf_airlines_admin/models/flight.dart';
 import 'network_exception.dart';
 
 class RestClient {
-  Dio _dio;
+  late Dio _dio;
 
-  String _authorizationToken;
+
 
   static final RestClient _singleton = RestClient._internal();
 
@@ -48,7 +48,7 @@ class RestClient {
     }
   }
 
-  Future<List<Airplane>> getAllAirplanes() async {
+  Future<List<Airplane>?> getAllAirplanes() async {
     try {
       Response response = await _dio.get("raf-airlines-flight-service/airplane/all");
       return response.data.map<Airplane>((jsonItem) => Airplane.fromJson(jsonItem)).toList();
@@ -75,7 +75,7 @@ class RestClient {
     }
   }
 
-  Future<List<Flight>> getAllFlights() async {
+  Future<List<Flight>?> getAllFlights() async {
     try {
       Response response = await _dio.get("raf-airlines-flight-service/flight/all");
       return response.data.map<Flight>((jsonItem) => Flight.fromJson(jsonItem)).toList();
@@ -87,7 +87,7 @@ class RestClient {
   Future<Flight> createFlight(Flight flight) async {
     try {
       Response response = await _dio.post("raf-airlines-flight-service/flight/add", data: {
-        "airplaneId": flight.airplane.id,
+        "airplaneId": flight.airplane!.id,
         "startDestination": flight.startDestination,
         "endDestination": flight.endDestination,
         "distance": flight.distance,

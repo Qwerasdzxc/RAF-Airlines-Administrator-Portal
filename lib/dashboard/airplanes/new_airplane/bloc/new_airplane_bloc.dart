@@ -12,10 +12,10 @@ part 'new_airplane_event.dart';
 part 'new_airplane_state.dart';
 
 class NewAirplaneBloc extends Bloc<NewAirplaneEvent, NewAirplaneState> {
-  final AirplaneService service;
+  final AirplaneService? service;
   final AirplanesBloc airplanesBloc;
 
-  NewAirplaneBloc({@required this.service, @required this.airplanesBloc})
+  NewAirplaneBloc({required this.service, required this.airplanesBloc})
       : super(NewAirplaneInitial());
 
   @override
@@ -27,7 +27,7 @@ class NewAirplaneBloc extends Bloc<NewAirplaneEvent, NewAirplaneState> {
         int capacity = int.parse(event.capacity);
 
         final airplane =
-            await service.createAirplane(Airplane(name: event.name, capacity: capacity));
+            await service!.createAirplane(Airplane(name: event.name, capacity: capacity));
 
         airplanesBloc.add(AddAirplaneEvent(airplane: airplane));
 

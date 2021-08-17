@@ -18,8 +18,8 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
 
   bool isCollapsed = false;
 
-  AnimationController _animationController;
-  Animation<double> widthAnimation;
+  AnimationController? _animationController;
+  late Animation<double> widthAnimation;
 
   String _selectedItem = "";
 
@@ -28,7 +28,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
     super.initState();
 
     _animationController = AnimationController(vsync: this, duration: Duration(milliseconds: 60));
-    widthAnimation = Tween<double>(begin: maxWidth, end: minWidth).animate(_animationController);
+    widthAnimation = Tween<double>(begin: maxWidth, end: minWidth).animate(_animationController!);
   }
 
   Widget _sidebarItem(SidebarItem navItem) {
@@ -75,7 +75,7 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: _animationController,
+        animation: _animationController!,
         builder: (context, widget) => Material(
               elevation: 5,
               child: Container(
@@ -127,13 +127,13 @@ class _SidebarState extends State<Sidebar> with SingleTickerProviderStateMixin {
                         setState(() {
                           isCollapsed = !isCollapsed;
                           isCollapsed
-                              ? _animationController.forward()
-                              : _animationController.reverse();
+                              ? _animationController!.forward()
+                              : _animationController!.reverse();
                         });
                       },
                       child: AnimatedIcon(
                         icon: AnimatedIcons.close_menu,
-                        progress: _animationController,
+                        progress: _animationController!,
                         color: selectedColor,
                         size: 30,
                       ),

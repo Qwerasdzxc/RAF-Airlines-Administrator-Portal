@@ -8,9 +8,9 @@ class AirplaneService {
 
   final AirplaneDAO dao;
 
-  AirplaneService({@required this.dao});
+  AirplaneService({required this.dao});
 
-  Future<List<Airplane>> getAllAirplanes() async => dao.getAllAirplanes();
+  Future<List<Airplane>?> getAllAirplanes() async => dao.getAllAirplanes();
 
   Future<Airplane> createAirplane(Airplane airplane) async => dao.createAirplane(airplane);
 

@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
             gradient: LinearGradient(
                 begin: Alignment.bottomLeft,
                 end: Alignment.topRight,
-                colors: [Colors.indigo[900], Colors.lightBlue])),
+                colors: [Colors.indigo[900]!, Colors.lightBlue])),
         child: Center(
             child: Container(
           width: MediaQuery.of(context).size.width / 3,

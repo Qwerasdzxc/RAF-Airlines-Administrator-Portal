@@ -14,7 +14,7 @@ class AddAirplaneEvent extends AirplanesEvent {
 
   final Airplane airplane;
 
-  AddAirplaneEvent({@required this.airplane});
+  AddAirplaneEvent({required this.airplane});
 
   @override
   List<Object> get props => [airplane];
@@ -24,7 +24,7 @@ class DeleteAirplaneEvent extends AirplanesEvent {
 
   final Airplane airplane;
 
-  DeleteAirplaneEvent({@required this.airplane});
+  DeleteAirplaneEvent({required this.airplane});
 
   @override
   List<Object> get props => [airplane];

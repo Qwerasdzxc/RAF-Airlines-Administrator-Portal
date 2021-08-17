@@ -3,25 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:raf_airlines_admin/models/airplane.dart';
 
 class Flight extends Equatable {
-  final int id;
-  final int distance;
+  final int? id;
+  final int? distance;
 
-  final Airplane airplane;
+  final Airplane? airplane;
 
-  final String startDestination;
-  final String endDestination;
+  final String? startDestination;
+  final String? endDestination;
 
-  final double price;
+  final double? price;
 
-  final bool canceled;
+  final bool? canceled;
 
   Flight(
       {this.id,
-      @required this.distance,
-      @required this.airplane,
-      @required this.startDestination,
-      @required this.endDestination,
-      @required this.price,
+      required this.distance,
+      required this.airplane,
+      required this.startDestination,
+      required this.endDestination,
+      required this.price,
       this.canceled = false});
 
   factory Flight.fromJson(Map json) => Flight(
@@ -34,13 +34,13 @@ class Flight extends Equatable {
       canceled: json["canceled"]);
 
   Flight copyWith(
-          {int id,
-          int distance,
-          Airplane airplane,
-          String startDestination,
-          String endDestination,
-          double price,
-          bool canceled}) =>
+          {int? id,
+          int? distance,
+          Airplane? airplane,
+          String? startDestination,
+          String? endDestination,
+          double? price,
+          bool? canceled}) =>
       Flight(
           id: id ?? this.id,
           distance: distance ?? this.distance,
@@ -51,5 +51,5 @@ class Flight extends Equatable {
           canceled: canceled ?? this.canceled);
 
   @override
-  List<Object> get props => [id];
+  List<Object?> get props => [id];
 }

@@ -38,7 +38,7 @@ class NewAirplaneTab extends StatelessWidget {
                     title: TextFormField(
                       controller: _nameController,
                       validator: (text) {
-                        return text.trim().length > 5
+                        return text!.trim().length > 5
                             ? null
                             : "Name must contain minimum 6 characters";
                       },
@@ -50,7 +50,7 @@ class NewAirplaneTab extends StatelessWidget {
                     title: TextFormField(
                       controller: _capacityController,
                       validator: (text) {
-                        return int.tryParse(text) != null
+                        return int.tryParse(text!) != null
                             ? null
                             : "Capacity must be a whole number";
                       },
@@ -71,7 +71,7 @@ class NewAirplaneTab extends StatelessWidget {
                       ),
                       color: Theme.of(context).primaryColor,
                       onPressed: () {
-                        if (_formKey.currentState.validate())
+                        if (_formKey.currentState!.validate())
                           BlocProvider.of<NewAirplaneBloc>(context).add(NewAirplaneProvided(
                               name: _nameController.text, capacity: _capacityController.text));
                       },

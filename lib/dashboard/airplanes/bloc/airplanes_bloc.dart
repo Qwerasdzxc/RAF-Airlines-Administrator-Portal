@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:raf_airlines_admin/models/airplane.dart';
 import 'package:raf_airlines_admin/services/airplane/airplane_service.dart';
 
@@ -11,9 +10,9 @@ part 'airplanes_state.dart';
 
 class AirplanesBloc extends Bloc<AirplanesEvent, AirplanesState> {
 
-  final AirplaneService service;
+  final AirplaneService? service;
 
-  AirplanesBloc({@required this.service}) : super(AirplanesLoading());
+  AirplanesBloc({required this.service}) : super(AirplanesLoading());
 
   @override
   Stream<AirplanesState> mapEventToState(AirplanesEvent event) async* {
@@ -21,31 +20,31 @@ class AirplanesBloc extends Bloc<AirplanesEvent, AirplanesState> {
       yield AirplanesLoading();
 
       try {
-        final data = await service.getAllAirplanes();
+        final data = await service!.getAllAirplanes();
 
         yield AirplanesLoaded(airplanes: data);
       } catch (e) {
         yield AirplanesError();
       }
     } else if (event is AddAirplaneEvent) {
-      final currState = state;
+      final AirplanesState currState = state;
 
       yield AirplanesLoading();
 
       try {
-        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes..add(event.airplane));
+        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes!..add(event.airplane));
       } catch (e) {
         yield AirplanesError();
       }
     } else if (event is DeleteAirplaneEvent) {
-      final currState = state;
+      final AirplanesState currState = state;
 
       yield AirplanesLoading();
 
       try {
-        await service.deleteAirplane(event.airplane);
+        await service!.deleteAirplane(event.airplane);
 
-        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes..remove(event.airplane));
+        yield AirplanesLoaded(airplanes: (currState as AirplanesLoaded).airplanes!..remove(event.airplane));
       } catch (e) {
         yield AirplanesError();
       }

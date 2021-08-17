@@ -8,7 +8,7 @@ class AirplanesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AirplanesBloc, AirplanesState>(builder: (context, state) {
-      if (state is AirplanesLoaded && state.airplanes.isNotEmpty)
+      if (state is AirplanesLoaded && state.airplanes!.isNotEmpty)
         return WhitePanel(
             title: "All airplanes",
             child: SingleChildScrollView(
@@ -39,10 +39,10 @@ class AirplanesTab extends StatelessWidget {
                       ),
                       numeric: true)
                 ],
-                rows: state.airplanes
+                rows: state.airplanes!
                     .map((plane) => DataRow(cells: [
                           DataCell(Text(plane.id.toString())),
-                          DataCell(Text(plane.name)),
+                          DataCell(Text(plane.name!)),
                           DataCell(Text(plane.capacity.toString())),
                           DataCell(IconButton(
                             icon: Icon(
@@ -52,7 +52,7 @@ class AirplanesTab extends StatelessWidget {
                             onPressed: () => Dialogs.showConfirmationDialog(
                                 context: context,
                                 content: "Are you sure you wish to delete airplane: " +
-                                    plane.name +
+                                    plane.name! +
                                     "?\n\nThis action cannot be revoked!",
                                 callback: () => BlocProvider.of<AirplanesBloc>(context)
                                     .add(DeleteAirplaneEvent(airplane: plane))),
@@ -61,7 +61,7 @@ class AirplanesTab extends StatelessWidget {
                     .toList(),
               ),
             ));
-      else if (state is AirplanesLoaded && state.airplanes.isEmpty)
+      else if (state is AirplanesLoaded && state.airplanes!.isEmpty)
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

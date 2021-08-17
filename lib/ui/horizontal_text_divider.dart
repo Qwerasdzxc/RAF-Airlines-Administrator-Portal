@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class HorizontalTextDivider extends StatelessWidget {
-  final String text;
+  final String? text;
 
   final Color color;
-  final Color textColor;
+  final Color? textColor;
 
   const HorizontalTextDivider(
-      {Key key, this.text, this.color = Colors.black12, this.textColor = Colors.black26})
+      {Key? key, this.text, this.color = Colors.black12, this.textColor = Colors.black26})
       : super(key: key);
 
   @override

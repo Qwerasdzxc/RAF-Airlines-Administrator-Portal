@@ -13,7 +13,7 @@ class AddFlightEvent extends FlightsEvent {
 
   final Flight flight;
 
-  AddFlightEvent({@required this.flight});
+  AddFlightEvent({required this.flight});
 
   @override
   List<Object> get props => [flight];
@@ -23,7 +23,7 @@ class DeleteFlightEvent extends FlightsEvent {
 
   final Flight flight;
 
-  DeleteFlightEvent({@required this.flight});
+  DeleteFlightEvent({required this.flight});
 
   @override
   List<Object> get props => [flight];

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:raf_airlines_admin/models/flight.dart';
 
 abstract class FlightDAO {
-  Future<List<Flight>> getAllFlights();
+  Future<List<Flight>?> getAllFlights();
 
   Future<Flight> createFlight(Flight flight);
 

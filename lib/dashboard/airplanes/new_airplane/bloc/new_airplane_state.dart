@@ -15,7 +15,7 @@ class NewAirplaneCreated extends NewAirplaneState {
 
   final Airplane airplane;
 
-  NewAirplaneCreated({@required this.airplane});
+  NewAirplaneCreated({required this.airplane});
 
   @override
   List<Object> get props => [airplane];

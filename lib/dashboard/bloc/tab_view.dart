@@ -5,5 +5,5 @@ class TabView {
   Tab tab;
   Widget view;
 
-  TabView({@required this.tab, @required this.view});
+  TabView({required this.tab, required this.view});
 }

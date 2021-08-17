@@ -10,9 +10,9 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final UserService userService;
+  final UserService? userService;
 
-  LoginBloc({@required this.userService}) : super(LoginInitial());
+  LoginBloc({required this.userService}) : super(LoginInitial());
 
   @override
   Stream<LoginState> mapEventToState(LoginEvent event) async* {
@@ -20,7 +20,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       yield LoginLoading();
 
       try {
-        await userService.login(event.username, event.password);
+        await userService!.login(event.username, event.password);
 
         yield LoginSuccessful();
       } catch (_) {

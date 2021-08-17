@@ -12,7 +12,7 @@ class NewAirplaneProvided extends NewAirplaneEvent {
   final String name;
   final String capacity;
 
-  NewAirplaneProvided({@required this.name, @required this.capacity});
+  NewAirplaneProvided({required this.name, required this.capacity});
 
   @override
   List<Object> get props => [name, capacity];

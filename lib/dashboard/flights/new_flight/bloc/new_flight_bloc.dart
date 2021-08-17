@@ -14,13 +14,13 @@ part 'new_flight_event.dart';
 part 'new_flight_state.dart';
 
 class NewFlightBloc extends Bloc<NewFlightEvent, NewFlightState> {
-  final FlightService flightService;
-  final AirplaneService airplaneService;
+  final FlightService? flightService;
+  final AirplaneService? airplaneService;
 
   final FlightsBloc flightsBloc;
 
   NewFlightBloc(
-      {@required this.flightService, @required this.airplaneService, @required this.flightsBloc})
+      {required this.flightService, required this.airplaneService, required this.flightsBloc})
       : super(NewFlightLoading());
 
   @override
@@ -29,7 +29,7 @@ class NewFlightBloc extends Bloc<NewFlightEvent, NewFlightState> {
       yield NewFlightLoading();
 
       try {
-        final airplanes = await airplaneService.getAllAirplanes();
+        final airplanes = await airplaneService!.getAllAirplanes();
 
         yield NewFlightInitial(planes: airplanes);
       } catch (_) {
@@ -50,7 +50,7 @@ class NewFlightBloc extends Bloc<NewFlightEvent, NewFlightState> {
         int distance = int.parse(event.distance);
         double price = double.parse(event.price);
 
-        final flight = await flightService.createFlight(Flight(
+        final flight = await flightService!.createFlight(Flight(
             airplane: event.airplane,
             price: price,
             distance: distance,

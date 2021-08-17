@@ -11,9 +11,9 @@ part 'flights_state.dart';
 
 class FlightsBloc extends Bloc<FlightsEvent, FlightsState> {
 
-  final FlightService service;
+  final FlightService? service;
 
-  FlightsBloc({@required this.service}) : super(FlightsLoading());
+  FlightsBloc({required this.service}) : super(FlightsLoading());
 
   @override
   Stream<FlightsState> mapEventToState(FlightsEvent event) async* {
@@ -21,36 +21,36 @@ class FlightsBloc extends Bloc<FlightsEvent, FlightsState> {
       yield FlightsLoading();
 
       try {
-        final data = await service.getAllFlights();
+        final data = await service!.getAllFlights();
 
         yield FlightsLoaded(flights: data);
       } catch (e) {
         yield FlightsError();
       }
     } else if (event is AddFlightEvent) {
-      final currState = state;
+      final FlightsState currState = state;
 
       yield FlightsLoading();
 
       try {
-        yield FlightsLoaded(flights: (currState as FlightsLoaded).flights..add(event.flight));
+        yield FlightsLoaded(flights: (currState as FlightsLoaded).flights!..add(event.flight));
       } catch (e) {
         yield FlightsError();
       }
     } else if (event is DeleteFlightEvent) {
-      final currState = state;
+      final FlightsState currState = state;
 
       yield FlightsLoading();
 
       try {
-        await service.deleteFlight(event.flight);
+        await service!.deleteFlight(event.flight);
 
-        List<Flight> flights = (currState as FlightsLoaded).flights;
+        List<Flight> flights = (currState as FlightsLoaded).flights!;
 
         Flight flight = flights.singleWhere((flight) => flight.id == event.flight.id).copyWith(canceled: true);
         flights.removeWhere((flight) => flight.id == event.flight.id);
 
-        yield FlightsLoaded(flights: (currState as FlightsLoaded).flights..add(flight));
+        yield FlightsLoaded(flights: currState.flights!..add(flight));
       } catch (e) {
         yield FlightsError();
       }

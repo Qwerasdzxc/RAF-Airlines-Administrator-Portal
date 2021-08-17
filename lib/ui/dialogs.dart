@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Dialogs {
   static void showConfirmationDialog(
-      {@required BuildContext context, @required String content, @required VoidCallback callback}) {
+      {required BuildContext context, required String content, required VoidCallback callback}) {
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
       onPressed: () => Navigator.pop(context),
